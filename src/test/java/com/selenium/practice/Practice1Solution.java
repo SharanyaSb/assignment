@@ -37,7 +37,6 @@ public class Practice1Solution extends Base{
 		}	
 	
 	public static void printPopulationValue(String locator) {		
-			
 		/*List<WebElement> population = driver.findElements(By.xpath(locator));
 			for (WebElement e : population) {
 				System.out.println(e.getText());}
