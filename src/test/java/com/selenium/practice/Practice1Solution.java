@@ -28,7 +28,6 @@ public class Practice1Solution extends Base{
 		while(count<=20) {
 			System.out.println(count + "sec");
 			if (count==21) break;
-	
 		System.out.println("************Population count*****************");
 		printPopulationValue(population_xpath);
 		System.out.println("*************Today and This Year Population count********************");
@@ -46,9 +45,7 @@ public class Practice1Solution extends Base{
 			*/
 			
 			//To improve performance, we can use stream
-	driver.findElements(By.xpath(locator)).stream().forEach(e1 -> System.out.println(e1.getText()));
-			
-			 
+	driver.findElements(By.xpath(locator)).stream().forEach(e1 -> System.out.println(e1.getText()));		 
 	}
 
 }
