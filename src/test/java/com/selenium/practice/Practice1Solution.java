@@ -40,8 +40,7 @@ public class Practice1Solution extends Base{
 			
 		/*List<WebElement> population = driver.findElements(By.xpath(locator));
 			for (WebElement e : population) {
-				System.out.println(e.getText());
-			}
+				System.out.println(e.getText());}
 			*/
 			
 			//To improve performance, we can use stream
