@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.selenium.practice.Practice1">
+      <class name="com.selenium.practice.Practice1Solution">
         <methods>
+          <include name="teardown"/>
+          <include name="chrome"/>
           <include name="assignment1"/>
         </methods>
-      </class> <!-- com.selenium.practice.Practice1 -->
+      </class> <!-- com.selenium.practice.Practice1Solution -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
