@@ -20,7 +20,10 @@ public class Practice1Solution extends Base{
 		driver.manage().window().maximize();}
 	
 	@AfterTest
-	public static void teardown() { driver.quit();	}
+	public static void teardown() 
+	{ driver.quit();	
+		
+	}
 	
 	@Test
 	public static void assignment1() throws InterruptedException {
