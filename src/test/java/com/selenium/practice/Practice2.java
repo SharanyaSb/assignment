@@ -1,5 +1,7 @@
 package com.selenium.practice;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -22,7 +24,7 @@ public class Practice2 extends Base {
 	
 	@AfterTest
 	public static void teardown() { 
-		//driver.quit();	
+		driver.quit();	
 	}
 	
 	@Test
@@ -40,11 +42,17 @@ public class Practice2 extends Base {
 		
 		  List<WebElement> li = driver.findElements(By.xpath("(//div[@class='swiper-wrapper'])[3]//div[@title]"));
 		  System.out.println(li.size()); 
-		  
+		  ArrayList<String> ar = new ArrayList<>();
+		 
 		  for (int i=0;i<li.size();i++) {
 		  String name= li.get(i).getAttribute("title");
-		  System.out.println(name);
+		 // System.out.println(name);
+		  ar.add(name);
 		  }
+		  Collections.sort(ar);
+		  
+		 System.out.println("sorted order is"+ar);
+		  
 		////*[text()='Recommended for you']//following::div[contains(@class,'swiper-slide')]//div[@title]
 		
 		
