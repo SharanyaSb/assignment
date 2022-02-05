@@ -1,4 +1,8 @@
 package com.selenium.practice;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 416c0780731aa1c4fa80dfa65d8e5fac9bb3d7fe
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +51,12 @@ public class Practice2 extends Base {
 	
 	@AfterTest
 	public static void teardown() { 
+<<<<<<< HEAD
 		driver.quit();		}
+=======
+		driver.quit();	
+	}
+>>>>>>> 416c0780731aa1c4fa80dfa65d8e5fac9bb3d7fe
 	
 	@Test
 	public static void carouselCount() throws Exception {	
@@ -73,6 +82,7 @@ public class Practice2 extends Base {
 	
 	
 	public static void carouselFunction() throws InterruptedException {
+<<<<<<< HEAD
 		Actions actions = new Actions(driver);
 		while(driver.findElement(By.xpath("//span[text()='Sign In']")).isDisplayed()) {
 			actions.sendKeys(Keys.ARROW_DOWN);
@@ -107,6 +117,30 @@ public class Practice2 extends Base {
 	
 
 	
+=======
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,700)", "");
+		Thread.sleep(2000);
+		
+		  List<WebElement> li = driver.findElements(By.xpath("(//div[@class='swiper-wrapper'])[3]//div[@title]"));
+		  System.out.println(li.size()); 
+		  ArrayList<String> ar = new ArrayList<>();
+		 
+		  for (int i=0;i<li.size();i++) {
+		  String name= li.get(i).getAttribute("title");
+		 // System.out.println(name);
+		  ar.add(name);
+		  }
+		  Collections.sort(ar);
+		  
+		 System.out.println("sorted order is"+ar);
+		  
+		////*[text()='Recommended for you']//following::div[contains(@class,'swiper-slide')]//div[@title]
+		
+		
+		
+>>>>>>> 416c0780731aa1c4fa80dfa65d8e5fac9bb3d7fe
 	}
 	
 	
