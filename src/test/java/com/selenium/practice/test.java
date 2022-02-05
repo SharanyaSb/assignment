@@ -1,27 +1,55 @@
 package com.selenium.practice;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-public class test {
-	public static double previousTime;
+public class test {	
+	public static WebDriver driver;	
 	
-	public static void main(String[] args) {
+	
+	@BeforeTest
+	public static void chrome() throws InterruptedException {
+		driver = Base.browser();
+		driver.get("https://www.noon.com/uae-en/");
+		driver.manage().window().maximize();
 
+	}	
 	
-	previousTime = System.currentTimeMillis();
-	//System.out.println("Start time is "+previousTime);
+	@AfterTest
+	public static void teardown() { 
+		driver.quit();		}
+	
+	@Test
+	public static void method1() throws Exception {	
 		
-		int value=0;
-		
-		while(value<20) {
-			//System.out.println("test");
-			double currentTime = System.currentTimeMillis();
-			//System.out.println("current time is "+currentTime);
-			//System.out.println("previous time : "+previousTime);
-			double elapsedTime = (currentTime - previousTime) / 1000.0;
-			System.out.println("Time in seconds : " + elapsedTime);
-			
-			 value = (int)elapsedTime;
-			System.out.println(value);
-			
 		}
-	}
+
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+
+	
+	
+
+
+	
+
