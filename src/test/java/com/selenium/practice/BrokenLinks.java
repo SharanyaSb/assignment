@@ -11,73 +11,55 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-public class BrokenLinks {
 
-private static WebDriver driver = null;
-
-public static void main(String[] args) {
-// TODO Auto-generated method stub
-
-String homePage = "http://www.zlti.com";
-String url = "";
-HttpURLConnection huc = null;
-int respCode = 200;
-
-	driver = new ChromeDriver();
-	
-	driver.manage().window().maximize();
-	
-	driver.get(homePage);
-	
+public class BrokenLinks extends Base {
+	public WebDriver driver;
+	@BeforeTest
+	public void launch() {
+		driver = Base.browser();
+		driver.get("https://www.amazon.com");
+		driver.manage().window().maximize();
+		
+	}
+@Test	
+public void brokenlinks() {
 	List<WebElement> links = driver.findElements(By.tagName("a"));
-	
-	Iterator<WebElement> it = links.iterator();
-	
-	while(it.hasNext()){
-	
-	url = it.next().getAttribute("href");
-	
-	System.out.println(url);
-	
-	if(url == null || url.isEmpty()){
-	System.out.println("URL is either not configured for anchor tag or it is empty");
-	continue;
+	System.out.println("No.of Links: "+links.size());
+	for (WebElement e : links) {
+		String url = e.getAttribute("href");
+		checkBL(url);
 	}
-	
-	if(!url.startsWith(homePage)){
-	System.out.println("URL belongs to another domain, skipping it.");
-	continue;
-	}
+}
 
-try {
-		huc = (HttpURLConnection)(new URL(url).openConnection());
-		
-		huc.setRequestMethod("HEAD");
-		
-		huc.connect();
-		
-		respCode = huc.getResponseCode();
-		
-				if(respCode >= 400){
-				System.out.println(url+" is a broken link");
-				}
-				else{
-				System.out.println(url+" is a valid link");
-				}
-		
-		} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+public void checkBL(String linkUrl) {
+	try {
+		URL url = new URL(linkUrl);
+		HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
+		httpUrlConnection.setConnectTimeout(5000);
+		httpUrlConnection.connect();
+		if (httpUrlConnection.getResponseCode()>=400) {
+			System.out.println(linkUrl + " " + httpUrlConnection.getResponseMessage() + " is broken link");
 		}
+		else {
+			System.out.println(linkUrl + " " + httpUrlConnection.getResponseMessage() + " is working fine");
+		}
+	}
+catch (Exception e) {
+	
 }
 
-driver.quit();
-
 }
+
+	@AfterTest
+	public void browserClose() {
+		driver.quit();	
+	}
+	
+
 }
 		
 
