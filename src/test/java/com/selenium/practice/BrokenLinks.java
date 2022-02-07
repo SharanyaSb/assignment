@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,10 +30,17 @@ public class BrokenLinks extends Base {
 public void brokenlinks() {
 	List<WebElement> links = driver.findElements(By.tagName("a"));
 	System.out.println("No.of Links: "+links.size());
+	List<String> urllinks = new ArrayList<String>();
 	for (WebElement e : links) {
 		String url = e.getAttribute("href");
-		checkBL(url);
+		urllinks.add(url);
+		//checkBL(url);
 	}
+	
+	long stTime=System.currentTimeMillis();
+	urllinks.parallelStream().forEach(eu -> checkBL(eu));
+	long EndTime=System.currentTimeMillis();
+	System.out.println("Time take is "+ (EndTime-stTime));
 }
 
 public void checkBL(String linkUrl) {
@@ -51,6 +59,7 @@ public void checkBL(String linkUrl) {
 catch (Exception e) {
 	
 }
+
 
 }
 
